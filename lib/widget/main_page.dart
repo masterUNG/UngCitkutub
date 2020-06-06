@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class MainPage extends StatefulWidget {
   @override
   _MainPageState createState() => _MainPageState();
@@ -9,8 +8,10 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return Text(
-      'Main Page'
+    return Row(
+      children: <Widget>[createItem('item1'), createItem('item2'),createItem('item3')],
     );
   }
+
+  Image createItem(String nameImage) => Image.asset('images/$nameImage.png');
 }
