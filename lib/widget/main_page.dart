@@ -8,8 +8,48 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[createItem('item1'), createItem('item2'),createItem('item3')],
+    return Stack(
+      children: <Widget>[
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,child: Image.asset('images/bg.png'),
+        ),
+        Column(
+          children: <Widget>[
+            mySizebox(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                createItem('item1'),
+                createItem('item2'),
+                createItem('item3')
+              ],
+            ),
+            mySizebox(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: <Widget>[
+                createItem('item4'),
+                createItem('item5'),
+                createItem('item6')
+              ],
+            ),
+            mySizebox(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: <Widget>[
+                createItem('item7'),
+              ],
+            )
+          ],
+        ),
+      ],
+    );
+  }
+
+  SizedBox mySizebox() {
+    return SizedBox(
+      height: 24.0,
     );
   }
 

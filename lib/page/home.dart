@@ -22,36 +22,76 @@ class _HomeState extends State<Home> {
 
   BottomNavigationBarItem mainBottom() {
     return BottomNavigationBarItem(
-      icon: Icon(Icons.home),
-      title: Text('หน้าแรก'),
+      icon: Container(
+        width: 48.0,
+        height: 48.0,
+        child: Image.asset('images/home.png'),
+      ),
+      activeIcon: Container(
+        width: 48.0,
+        height: 48.0,
+        child: Image.asset('images/ahome.png'),
+      ),
+      title: Text(
+        'หน้าแรก',
+        style: TextStyle(color: Colors.white),
+      ),
     );
   }
 
   BottomNavigationBarItem departMentBottom() {
     return BottomNavigationBarItem(
-      icon: Icon(Icons.settings),
-      title: Text('ภาควิชา'),
+      icon: Icon(
+        Icons.settings,
+        size: 48.0,
+        color: Colors.white,
+      ),
+      title: Text(
+        'ภาควิชา',
+        style: TextStyle(color: Colors.white),
+      ),
     );
   }
 
   BottomNavigationBarItem newsBottom() {
     return BottomNavigationBarItem(
-      icon: Icon(Icons.perm_identity),
-      title: Text('ข่าวสาร'),
+      icon: Icon(
+        Icons.perm_identity,
+        size: 48.0,
+        color: Colors.white,
+      ),
+      title: Text(
+        'ข่าวสาร',
+        style: TextStyle(color: Colors.white),
+      ),
     );
   }
 
   BottomNavigationBarItem mapBottom() {
     return BottomNavigationBarItem(
-      icon: Icon(Icons.map),
-      title: Text('แผนที่'),
+      icon: Icon(
+        Icons.map,
+        size: 48.0,
+        color: Colors.white,
+      ),
+      title: Text(
+        'แผนที่',
+        style: TextStyle(color: Colors.white),
+      ),
     );
   }
 
   BottomNavigationBarItem calendarBottom() {
     return BottomNavigationBarItem(
-      icon: Icon(Icons.calendar_today),
-      title: Text('ปฎิทิน'),
+      icon: Icon(
+        Icons.calendar_today,
+        size: 48.0,
+        color: Colors.white,
+      ),
+      title: Text(
+        'ปฎิทิน',
+        style: TextStyle(color: Colors.white),
+      ),
     );
   }
 
@@ -84,6 +124,7 @@ class _HomeState extends State<Home> {
 
   BottomNavigationBar myBottomNav() {
     return BottomNavigationBar(
+      backgroundColor: Colors.indigo,
       type: BottomNavigationBarType.fixed,
       items: setItem(),
       currentIndex: index,
