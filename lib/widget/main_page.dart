@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:ungcitkutub/page/history.dart';
+import 'package:ungcitkutub/utility/my_style.dart';
 
 class MainPage extends StatefulWidget {
   @override
@@ -10,35 +12,32 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        Container(
-          width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,child: Image.asset('images/bg.png'),
-        ),
+        MyStyle().myBG(),
         Column(
           children: <Widget>[
             mySizebox(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                createItem('item1'),
-                createItem('item2'),
-                createItem('item3')
+                createItem('item1', History()),
+                createItem('item2', History()),
+                createItem('item3', History())
               ],
             ),
             mySizebox(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                createItem('item4'),
-                createItem('item5'),
-                createItem('item6')
+                createItem('item4', History()),
+                createItem('item5', History()),
+                createItem('item6', History())
               ],
             ),
             mySizebox(),
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
-                createItem('item7'),
+                createItem('item7', History()),
               ],
             )
           ],
@@ -53,5 +52,11 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
-  Image createItem(String nameImage) => Image.asset('images/$nameImage.png');
+  Widget createItem(String nameImage, Widget widget) => GestureDetector(
+        onTap: () {
+          MaterialPageRoute route = MaterialPageRoute(builder: (context) => widget,);
+          Navigator.push(context, route);
+        },
+        child: Image.asset('images/$nameImage.png'),
+      );
 }
