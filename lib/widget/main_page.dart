@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ungcitkutub/page/history.dart';
+import 'package:ungcitkutub/page/my_boss.dart';
 import 'package:ungcitkutub/utility/my_style.dart';
 
 class MainPage extends StatefulWidget {
@@ -20,7 +21,7 @@ class _MainPageState extends State<MainPage> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
                 createItem('item1', History()),
-                createItem('item2', History()),
+                createItem('item2', MyBoss()),
                 createItem('item3', History())
               ],
             ),
@@ -52,6 +53,7 @@ class _MainPageState extends State<MainPage> {
     );
   }
 
+  //เมธอดที่ทำหน้าที่ ย้ายการทำงานไปหน้า ที่เราคลิกที่ ไอเทม
   Widget createItem(String nameImage, Widget widget) => GestureDetector(
         onTap: () {
           MaterialPageRoute route = MaterialPageRoute(builder: (context) => widget,);

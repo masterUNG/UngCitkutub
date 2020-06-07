@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ungcitkutub/widget/history_widget.dart';
+import 'package:ungcitkutub/widget/story.dart';
+import 'package:ungcitkutub/widget/sybon.dart';
 
 class History extends StatefulWidget {
   @override
@@ -8,65 +11,28 @@ class History extends StatefulWidget {
 class _HistoryState extends State<History> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('ประวัติ'),
-      ),
-      body: Column(
-        children: <Widget>[
-          showHead(context),
-          Expanded(
-                      child: Container(width: MediaQuery.of(context).size.width,
-              color: Colors.grey,
-              child: Text('This is Content'),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
-  Stack showHead(BuildContext context) {
-    return Stack(
-      children: <Widget>[
-        Container(
-          width: MediaQuery.of(context).size.width,
-          height: 120.0,
-          color: Colors.grey,
-          child: Image.asset('images/head.png'),
-        ),
-        Container(
-          height: 120.0,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: <Widget>[
-                  FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                        'ประวัติ',
-                        style: TextStyle(color: Colors.white),
-                      )),
-                  FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                        'ปรัชญา',
-                        style: TextStyle(color: Colors.white),
-                      )),
-                  FlatButton(
-                      onPressed: () {},
-                      child: Text(
-                        'สัญลักษณ์',
-                        style: TextStyle(color: Colors.white),
-                      )),
-                ],
-              ),
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          bottom: TabBar(
+            tabs: <Widget>[
+              Text('ประวัติ'),
+              Text('ปรัชญา'),
+              Text('สัญญาลักษณ์'),
             ],
           ),
-        )
-      ],
+        ),
+        body: TabBarView(
+          children: <Widget>[
+            HistoryWidget(),
+            Story(),
+            Sybon(),
+          ],
+        ),
+      ),
     );
+
+   
   }
 }
