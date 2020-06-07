@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ungcitkutub/page/history.dart';
 import 'package:ungcitkutub/page/my_boss.dart';
+import 'package:ungcitkutub/page/my_content.dart';
 import 'package:ungcitkutub/utility/my_style.dart';
 
 class MainPage extends StatefulWidget {
@@ -22,7 +23,7 @@ class _MainPageState extends State<MainPage> {
               children: <Widget>[
                 createItem('item1', History()),
                 createItem('item2', MyBoss()),
-                createItem('item3', History())
+                createItem('item3', MyContent())
               ],
             ),
             mySizebox(),
