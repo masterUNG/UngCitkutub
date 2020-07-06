@@ -13,7 +13,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   List<Widget> currentWidget = [
     MainPage(),
-    DepartmentPage(),
+    Departmentpage(),
     NewsPage(),
     MapPage(),
     CalendarPage(),
