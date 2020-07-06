@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:ungcitkutub/page/show_pdf.dart';
 import 'package:ungcitkutub/utility/my_constant.dart';
 import 'package:ungcitkutub/utility/my_style.dart';
 
@@ -97,23 +98,6 @@ class _ShowListDegeeState extends State<ShowListDegee> {
             width: 250.0,
             child: Column(
               children: <Widget>[
-                // ListTile(
-                //   title: Text(
-                //     deparments[index],
-                //     style: TextStyle(
-                //       color: Colors.white,
-                //       fontWeight: FontWeight.bold,
-                //     ),
-                //   ),
-                //   trailing: Icon(
-                //     Icons.keyboard_arrow_down,
-                //     color: Colors.white,
-                //   ),
-                //   onTap: () {
-                //     print('You Click index ==>> $index');
-                //   },
-                // ),
-                // showExpand(),
                 ExpansionTile(
                   title: Text(
                     deparments[index],
@@ -143,7 +127,23 @@ class _ShowListDegeeState extends State<ShowListDegee> {
     var result = json.decode(response.data);
     for (var map in result) {
       String string = map['file_name'];
-      Text text = Text(string);
+      Widget text = ListTile(
+        onTap: () {
+          print('You Click == $string');
+          MaterialPageRoute route = MaterialPageRoute(
+            builder: (context) => ShowPdf(namePDF: string,catigory: 'file_degree',),
+          );
+          Navigator.push(context, route);
+        },
+        leading: Icon(
+          Icons.brightness_5,
+          color: Colors.white,
+        ),
+        title: Text(
+          string,
+          style: TextStyle(color: Colors.white),
+        ),
+      );
       fileNamesWidget.add(text);
     }
     return fileNamesWidget;

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ungcitkutub/page/history.dart';
 import 'package:ungcitkutub/page/my_boss.dart';
 import 'package:ungcitkutub/page/my_content.dart';
+import 'package:ungcitkutub/page/service.dart';
 import 'package:ungcitkutub/utility/my_style.dart';
 
 class MainPage extends StatefulWidget {
@@ -30,7 +31,7 @@ class _MainPageState extends State<MainPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: <Widget>[
-                createItem('item4', History()),
+                createItem('item4', Service()),
                 createItem('item5', History()),
                 createItem('item6', History())
               ],
