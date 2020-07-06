@@ -30,22 +30,40 @@ class _ShowListDegeeState extends State<ShowListDegee> {
     try {
       String url =
           '${MyConstant().domain}/cit/getDegreeWhereDegree.php?isAdd=true&degree=${listdegree[index]}';
-      print('url = $url');
+      // print('url ===>> $url');
+      // print('url = $url');
       Response response = await Dio().get(url);
       print('response = $response');
 
       if (response.toString() != 'null') {
         var result = json.decode(response.data);
-        print('result = $result');
+        // print('result = $result');
         for (var json in result) {
+          String string = json['department'];
           setState(() {
-            deparments.add(json['department']);
+            if (checkDeparment(string)) {
+              deparments.add(string);
+            }
           });
         }
       }
     } catch (e) {
       print('e = ${e.toString()}');
     }
+  }
+
+  bool checkDeparment(String string) {
+    bool result = true;
+
+    if (deparments.length != 0) {
+      for (var deparment in deparments) {
+        if (string == deparment) {
+          result = false;
+        }
+      }
+    } // if1
+
+    return result;
   }
 
   @override
@@ -81,7 +99,13 @@ class _ShowListDegeeState extends State<ShowListDegee> {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              trailing: Icon(Icons.keyboard_arrow_down, color: Colors.white,),
+              trailing: Icon(
+                Icons.keyboard_arrow_down,
+                color: Colors.white,
+              ),
+              onTap: () {
+                print('You Click index ==>> $index');
+              },
             ),
           ),
         ],
