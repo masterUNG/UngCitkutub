@@ -15,9 +15,9 @@ class ShowListDegee extends StatefulWidget {
 class _ShowListDegeeState extends State<ShowListDegee> {
   List<String> listTitles = ['ปริญญาโท', 'ปริญญาตรี'];
   List<String> listdegree = ['ป.โท', 'ป.ตรี'];
-  int index;
-
   List<String> deparments = List();
+  List<List<Widget>> listFileNameWidgets = List();
+  int index;
 
   @override
   void initState() {
@@ -40,9 +40,13 @@ class _ShowListDegeeState extends State<ShowListDegee> {
         // print('result = $result');
         for (var json in result) {
           String string = json['department'];
+
+          List<Widget> widgets = await createSetFileName(string);
+
           setState(() {
             if (checkDeparment(string)) {
               deparments.add(string);
+              listFileNameWidgets.add(widgets);
             }
           });
         }
@@ -91,23 +95,57 @@ class _ShowListDegeeState extends State<ShowListDegee> {
               color: Colors.orange,
             ),
             width: 250.0,
-            child: ListTile(
-              title: Text(
-                deparments[index],
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              trailing: Icon(
-                Icons.keyboard_arrow_down,
-                color: Colors.white,
-              ),
-              onTap: () {
-                print('You Click index ==>> $index');
-              },
+            child: Column(
+              children: <Widget>[
+                // ListTile(
+                //   title: Text(
+                //     deparments[index],
+                //     style: TextStyle(
+                //       color: Colors.white,
+                //       fontWeight: FontWeight.bold,
+                //     ),
+                //   ),
+                //   trailing: Icon(
+                //     Icons.keyboard_arrow_down,
+                //     color: Colors.white,
+                //   ),
+                //   onTap: () {
+                //     print('You Click index ==>> $index');
+                //   },
+                // ),
+                // showExpand(),
+                ExpansionTile(
+                  title: Text(
+                    deparments[index],
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  children: listFileNameWidgets[index],
+                )
+              ],
             ),
           ),
         ],
       );
+
+  Widget showExpand() {
+    return Text('File Name');
+  }
+
+  Future<List<Widget>> createSetFileName(String string) async {
+    List<Widget> fileNamesWidget = List();
+    String url =
+        '${MyConstant().domain}/cit/getDegreeWhereDepartment.php?isAdd=true&degree=${listdegree[index]}&department=$string';
+    Response response = await Dio().get(url);
+    // print('res = $response');
+    var result = json.decode(response.data);
+    for (var map in result) {
+      String string = map['file_name'];
+      Text text = Text(string);
+      fileNamesWidget.add(text);
+    }
+    return fileNamesWidget;
+  }
 }
